@@ -1,0 +1,33 @@
+<html>
+
+<head>
+    <!-- Google Font (optional) -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Calculator</h1>
+    </header>
+
+    <form onSubmit="submitForm(event)">
+        <input type="number" id="number1" />
+        <button onClick="addNumber(event)">+</button>
+        <button onClick="minusNumber(event)">-</button>
+        <button onClick="multiplyNumber(event)">*</button>
+        <button onClick="divideNumber(event)">/</button>
+         <input type="number" id="number2" />
+         <button onClick="(event)">/</button>
+         
+    </form>
+    <div id="content">
+    </div>
+    
+    <!-- Our JavaScript file -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="scripts/client.js"></script>
+</body>
+
+</html>

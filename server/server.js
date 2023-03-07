@@ -52,21 +52,21 @@ function doMath(mathHistory) {
         }
         else {
             result = math.number1 / math.number2; // use / (division) operator to divide two numbers  
-        }
+        
     return result;
 }
 
 function mathHistoryFinalPush() {
     doMath(mathHistory);
     for (let math of mathHistory)
-    mathHistoryFinal.push({
-       math1: math.number1,
-       math2:   math.mathOperator,
-       math3:  math.number2 ,
-       math4: result
-        }  ) 
+    mathHistoryFinal.push(
+       { math: {  math1: math.number1,
+          math2:   math.mathOperator,
+        math3:  math.number2 ,
+            math4: result
+        } }, ) 
     mathHistory = [];
 }
 mathHistoryFinalPush()
-
+}
 

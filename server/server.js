@@ -6,7 +6,9 @@ const app = express();
 // Use 5001 for localhost development
 const port = process.env.PORT || 5003;
 
+let result = 0;
 let mathHistory = [];
+let mathHistoryFinal = [];
 
 //Allow req.body
 //Any reference to body-parser can be ignored
@@ -16,7 +18,7 @@ app.use(express.json())
 app.get('/math', (req, res)=> {
     console.log('Get Request made for /math')
      //Send back the list of quotes!
-    res.send(mathHistory);
+    res.send(mathHistoryFinal);
 });
 //POST request save user input
 app.post('/math', (req, res)=> {
@@ -25,20 +27,7 @@ app.post('/math', (req, res)=> {
     //as a property of req.body
     console.log(req.body);
     let mathToAdd = req.body;
-    if (mathOperator == '+') { // use + (addition) operator to add two numbers  
-        result = number1 + number2;  
-    }  
-    else if (mathOperator == '-') { // use -  (subtraction) operator to subtract two numbers  
-        result = number1 - number2;  
-    }  
-    else if (mathOperator == '*') { // use * (multiplication) operator to multiply two numbers  
-        result = number1 * number2;  
-    }  
-    else {  
-        result = number1 / number2; // use / (division) operator to divide two numbers  
-    }  
-    
-    mathHistory.push(mathToAdd + result);
+    mathHistory.push(mathToAdd);
     res.sendStatus(201); //Success!
 });
 
@@ -49,5 +38,29 @@ app.use(express.static('server/public'));
 app.listen(port, () => {
     console.log(`listening on port: ${port}`);
 });
+
+function doMath (mathHistory) {
+    for (let math of mathHistory)
+    if (math.mathOperator == '+') { // use + (addition) operator to add two numbers  
+        result = math.number1 + math.number2;  
+    }  
+    else if (math.mathOperator == '-') { // use -  (subtraction) operator to subtract two numbers  
+        result = math.number1 - math.number2;  
+    }  
+    else if (math.mathOperator == '*') { // use * (multiplication) operator to multiply two numbers  
+        result = math.number1 * math.number2;  
+    }  
+    else {  
+        result = math.number1 / math.number2; // use / (division) operator to divide two numbers  
+    }  
+    return result;
+}
+
+function mathHistoryFinalPush () {
+    doMath (mathHistory);
+    mathHistoryFinal.push(mathHistory, result);
+    mathHistory = [];
+}
+mathHistoryFinalPush ()
 
 

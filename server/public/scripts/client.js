@@ -22,7 +22,7 @@ function getMath(){
        }
     }); //ALWAYS add .catch
 }
-getMath();
+
 
 function submitForm(event){
     //stop page from refreshing
@@ -36,6 +36,7 @@ function submitForm(event){
     };
     // type     url         data to send        
     axios.post('/math',mathForServer).then((response) => {
+        getMath();
     }).catch((error) => {
         console.log(error);
         alert('Something went wrong.');

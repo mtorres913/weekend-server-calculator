@@ -12,16 +12,16 @@
         <h1>Server Calculator</h1>
     </header>
 
-    <form onSubmit="submitForm(event)">
+    <div id="calculator">
         <input type="number" id="number1" />
-        <button type="button"  value = "+"  onClick="EventTarget">+</button>
-        <button type="button" value = "-"  onClick="EventTarget">-</button>
-        <button type="button"  value = "*"  onClick="EventTarget">*</button>
-        <button type="button"  value = "/"  onClick="EventTarget">/</button>
+        <button type="button"  value = "+"  onClick="getOperator(event)">+</button>
+        <button type="button" value = "-"  onClick="getOperator(event)">-</button>
+        <button type="button"  value = "*"  onClick="getOperator(event)">*</button>
+        <button type="button"  value = "/"  onClick="getOperator(event)">/</button>
          <input type="number" id="number2" />
-         <button type="submit">=</button>
+         <button onClick="submitForm(event)">=</button>
          <button type="button" onClick="clearInput(event)">C</button>
-    </form>
+    </div>
     <div id="content">
     </div>
     

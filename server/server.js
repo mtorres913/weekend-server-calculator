@@ -20,12 +20,25 @@ app.get('/math', (req, res)=> {
 });
 //POST request save user input
 app.post('/math', (req, res)=> {
-    console.log('POST request made for /quotes');
+    console.log('POST request made for /math');
     //Any data we send from the client is available
     //as a property of req.body
     console.log(req.body);
     let mathToAdd = req.body;
-    mathHistory.push(mathToAdd);
+    if (mathOperator == '+') { // use + (addition) operator to add two numbers  
+        result = number1 + number2;  
+    }  
+    else if (mathOperator == '-') { // use -  (subtraction) operator to subtract two numbers  
+        result = number1 - number2;  
+    }  
+    else if (mathOperator == '*') { // use * (multiplication) operator to multiply two numbers  
+        result = number1 * number2;  
+    }  
+    else {  
+        result = number1 / number2; // use / (division) operator to divide two numbers  
+    }  
+    
+    mathHistory.push(mathToAdd + result);
     res.sendStatus(201); //Success!
 });
 
@@ -38,7 +51,3 @@ app.listen(port, () => {
 });
 
 
-function sum1 (x,y)
-{ 
-   return (x+y);
-}

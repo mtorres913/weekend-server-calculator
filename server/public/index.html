@@ -14,13 +14,13 @@
 
     <form onSubmit="submitForm(event)">
         <input type="number" id="number1" />
-        <button type="button" onClick="addNumber(event)">+</button>
-        <button type="button" onClick="minusNumber(event)">-</button>
-        <button type="button" onClick="multiplyNumber(event)">*</button>
-        <button type="button" onClick="divideNumber(event)">/</button>
+        <button type="button"  value = "+"  onClick="EventTarget">+</button>
+        <button type="button" value = "-"  onClick="EventTarget">-</button>
+        <button type="button"  value = "*"  onClick="EventTarget">*</button>
+        <button type="button"  value = "/"  onClick="EventTarget">/</button>
          <input type="number" id="number2" />
-         <button>=</button>
-         <button onClick="clearInput(event)">C</button>
+         <button type="submit">=</button>
+         <button type="button" onClick="clearInput(event)">C</button>
     </form>
     <div id="content">
     </div>

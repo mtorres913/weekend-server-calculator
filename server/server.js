@@ -14,9 +14,9 @@ app.use(express.json())
 // GET request returns information
 //localhost:5003/quotes
 app.get('/math', (req, res)=> {
-    console.log('Get Request made for /quotes')
+    console.log('Get Request made for /math')
      //Send back the list of quotes!
-    res.send(quoteList);
+    res.send(mathHistory);
 });
 //POST request save user input
 app.post('/math', (req, res)=> {
@@ -24,8 +24,8 @@ app.post('/math', (req, res)=> {
     //Any data we send from the client is available
     //as a property of req.body
     console.log(req.body);
-    let quoteToAdd = req.body;
-    quoteList.push(quoteToAdd);
+    let mathToAdd = req.body;
+    mathHistory.push(mathToAdd);
     res.sendStatus(201); //Success!
 });
 
@@ -38,4 +38,7 @@ app.listen(port, () => {
 });
 
 
-
+function sum1 (x,y)
+{ 
+   return (x+y);
+}

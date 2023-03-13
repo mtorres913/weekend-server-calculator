@@ -6,7 +6,7 @@ const app = express();
 // Use 5001 for localhost development
 const port = process.env.PORT || 5003;
 
-let result = 0;
+
 let mathHistory = [];
 let mathHistoryFinal = [];
 
@@ -18,7 +18,7 @@ app.use(express.json())
 app.get('/math', (req, res) => {
     console.log('Get Request made for /math')
     //Send back the list of quotes!
-    res.send(mathHistoryFinal);
+    res.send(mathHistory);
 });
 //POST request save user input
 app.post('/math', (req, res) => {
@@ -27,6 +27,7 @@ app.post('/math', (req, res) => {
     //as a property of req.body
     console.log(req.body);
     let mathToAdd = req.body;
+    mathToAdd.answer = doMath(mathToAdd)
     mathHistory.push(mathToAdd);
     res.sendStatus(201); //Success!
 });
@@ -39,34 +40,19 @@ app.listen(port, () => {
     console.log(`listening on port: ${port}`);
 });
 
-function doMath(mathHistory) {
-    for (let math of mathHistory)
-        if (math.mathOperator == '+') { // use + (addition) operator to add two numbers  
-            result = math.number1 + math.number2;
+function doMath(math) {
+        let result = 0
+        if (math.mathOperator ==  '+' ) { // use + (addition) operator to add two numbers  
+            result = Number(math.number1) + Number(math.number2);
         }
         else if (math.mathOperator == '-') { // use -  (subtraction) operator to subtract two numbers  
-            result = math.number1 - math.number2;
+            result = Number(math.number1) - Number(math.number2);
         }
         else if (math.mathOperator == '*') { // use * (multiplication) operator to multiply two numbers  
-            result = math.number1 * math.number2;
+            result =  Number(math.number1) * Number(math.number2);
         }
         else {
-            result = math.number1 / math.number2; // use / (division) operator to divide two numbers  
-        
+            result = Number(math.number1) / Number(math.number2); // use / (division) operator to divide two numbers  
+        }
     return result;
 }
-
-function mathHistoryFinalPush() {
-    doMath(mathHistory);
-    for (let math of mathHistory)
-    mathHistoryFinal.push(
-       { math: {  math1: math.number1,
-          math2:   math.mathOperator,
-        math3:  math.number2 ,
-            math4: result
-        } }, ) 
-    mathHistory = [];
-}
-mathHistoryFinalPush()
-}
-

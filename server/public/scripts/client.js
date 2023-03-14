@@ -17,7 +17,9 @@ function getMath() {
         //Loop over array of quotes and append to the DOM
         for (let math of mathFromServer) {
             contentDiv.innerHTML += `
-            <p>${(math.number1)} ${math.mathOperator}  ${math.number2} = ${math.answer}</p>
+            <tr>
+          <td> ${(math.number1)} ${math.mathOperator}  ${math.number2} = ${math.answer} </td>
+          </tr>
         `
         }
     }); //ALWAYS add .catch
